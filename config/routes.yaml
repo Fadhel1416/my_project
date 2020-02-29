@@ -1,0 +1,10 @@
+index:
+    path: /
+    controller: App\Controller\DefaultController::index
+index2:
+    path: /ttt/{id}
+    controller: App\Controller\DefaultController::ali
+
+index3:
+    path: /bbb
+    controller: App\Controller\DefaultController::fadhel
