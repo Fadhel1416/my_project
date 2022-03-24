@@ -1,0 +1,23 @@
+<?php 
+function curl_do_post($URL_ENVOI,$CHAINE)	
+{	  
+        if (strpos($URL_ENVOI,"?")<>false) 
+        {		
+        $PARAMS = substr($URL_ENVOI,strpos($URL_ENVOI,"?")+1,strlen($URL_ENVOI)-(strpos($URL_ENVOI,"?")+1));
+        $URL_ENVOI = substr($URL_ENVOI,0,strpos($URL_ENVOI,"?"));
+        $CHAINE = $CHAINE."&".$PARAMS;
+        }
+    $host = "$URL_ENVOI";
+    $XPost = $CHAINE;
+    $url = $host;
+    $ch = curl_init();// initialize curl handle
+    curl_setopt($ch, CURLOPT_URL,$url); // set url to post to
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER,true); // return into a variable
+    curl_setopt($ch, CURLOPT_FAILONERROR,true);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($ch, CURLOPT_TIMEOUT, 40); // times out after 4s
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $XPost); // add POST fields
+    $result = curl_exec($ch);
+    return $result;
+}
+?>
